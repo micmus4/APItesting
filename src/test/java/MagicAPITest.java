@@ -1,4 +1,4 @@
-public class MagicAPITest
+public abstract class MagicAPITest
 {
     private static final String API_URL = "https://api.magicthegathering.io";
 

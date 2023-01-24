@@ -1,12 +1,14 @@
 import org.apache.http.HttpStatus;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.time.Duration;
 import java.util.Collections;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Tests regarding Cards.
@@ -260,5 +262,236 @@ public class CardAPITest extends MagicAPITest
                 .then().assertThat()
                 .statusCode( HttpStatus.SC_OK )
                 .body( "cards.artist", everyItem( equalTo( artistFilter ) ) );
+    }
+
+    /**
+     * Test to check whether Card API can filter by query param 'power'.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkCardFilteringByPower()
+    {
+        final String powerFilter = "4";
+
+        given().queryParam( "power", powerFilter )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_OK )
+                .body( "cards.power", everyItem( equalTo( powerFilter ) ) );
+    }
+
+    /**
+     * Test to check whether Card API can filter by query param 'toughness'.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkCardFilteringByToughness()
+    {
+        final String toughnessFilter = "4";
+
+        given().queryParam( "toughness", toughnessFilter )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_OK )
+                .body( "cards.toughness", everyItem( equalTo( toughnessFilter ) ) );
+    }
+
+    /**
+     * Test to check whether Card API can filter by query param 'language'.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkCardFilteringByLanguage()
+    {
+        final String languageFilter = "French";
+
+        given().queryParam( "language", languageFilter )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_OK )
+                .body( "cards.foreignNames.language", everyItem( hasItem( languageFilter ) ) );
+    }
+
+    /**
+     * Test to check whether Card API can filter by query param 'legality'.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkCardFilteringByLegality()
+    {
+        final String legalityFilter = "Legal";
+
+        given().queryParam( "legality", legalityFilter )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_OK )
+                .body( "cards.legalities.legality", everyItem( hasItem( legalityFilter ) ) );
+    }
+
+    /**
+     * Test to check whether Card API can filter by query param 'gameFormat'.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkCardFilteringByGameFormat()
+    {
+        final String gameFormatFilter = "Duel";
+
+        given().queryParam( "legality", gameFormatFilter )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_OK )
+                .body( "cards.legalities.format", everyItem( hasItem( gameFormatFilter ) ) );
+    }
+
+    /**
+     * Test to check whether Card API can apply page to response.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkApplyingPageToRequest()
+    {
+        final int page = 1;
+
+        given().queryParam( "page", page )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_OK );
+    }
+
+    /**
+     * Test to check whether negative page value is considered as bad request.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    @APIVulnerability( reason = "Page number must not be negative." )
+    public void pageNumberMustNotBeNegative()
+    {
+        int page = -99999999;
+
+        given().queryParam( "page", page )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_BAD_REQUEST );
+    }
+
+    /**
+     * Test to check whether Card API can filter by query param 'page'.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkApplyingPageSizeToRequest()
+    {
+        final int pageSize = 50;
+
+        given().queryParam( "pageSize", pageSize )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_OK );
+    }
+
+    /**
+     * Test to check if page size extending its max value will result in bad request.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    @APIVulnerability( reason = "Page size should not be exceed its maximum value." )
+    public void pageSizeShouldNotExceedItsMaximumValue()
+    {
+        final int pageSize = 500; // max is 100
+
+        given().queryParam( "pageSize", pageSize )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_BAD_REQUEST );
+    }
+
+    /**
+     * Test to check if page size being negative will result in bad request.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    @APIVulnerability( reason = "Page size should not be negative." )
+    public void pageSizeShouldNotBeNegative()
+    {
+        final int pageSize = -999; // max is 100
+
+        given().queryParam( "pageSize", pageSize )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_BAD_REQUEST );
+    }
+
+    /**
+     * Test to check whether Card API can be grouped by a property.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    @APIVulnerability( reason = "Ordering by field end with server error." )
+    public void checkApplyingOrderByToRequest()
+    {
+        final String orderByProperty = "cards.name";
+
+        given().queryParam( "orderBy", orderByProperty )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat().statusCode( HttpStatus.SC_OK );
+    }
+
+    /**
+     * Test to check whether Card API can be randomly fetched.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkFetchingRandomNumberOfCards()
+    {
+        given().queryParam( "random" )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat().statusCode( HttpStatus.SC_OK );
+    }
+
+    /**
+     * Test to check whether Card API can be randomly fetched.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkWhetherContainFilterWorksWhenPropertyExists()
+    {
+        given().queryParam( "contains", "name" )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat().statusCode( HttpStatus.SC_OK );
+
+        assertNotEquals( "{\"cards\":[]}", given().queryParam( "contains", "name" )
+                .when().get( getCardApiEndpoint() ).getBody().toString() );
+    }
+
+    /**
+     * Test to check whether Card API can be randomly fetched.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkWhetherContainFilterWorksWhenPropertyDoesNotExists()
+    {
+        given().queryParam( "contains", "rweqwaeage" )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat().statusCode( HttpStatus.SC_OK );
+
+        assertEquals( "{\"cards\":[]}", given().queryParam( "contains", "rweqwaeage" )
+                .when().get( getCardApiEndpoint() ).getBody().print() );
+    }
+
+    /**
+     * Test to check whether Card API can filter by query param 'id'.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkCardFilteringById()
+    {
+        final String gameFormatFilter = "ecf2b08e-7eca-5f13-a9f7-7a915ee259f5";
+
+        given().queryParam( "id", gameFormatFilter )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_OK )
+                .body( "cards.id", everyItem( equalTo( gameFormatFilter ) ) );
+    }
+
+    /**
+     * Test to check whether Card API can filter by query param 'multiverseid'.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkCardFilteringByMultiverseId()
+    {
+        final String multiverseIdFilter = "130385";
+
+        given().queryParam( "multiverseid", multiverseIdFilter )
+                .when().get( getCardApiEndpoint() )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_OK )
+                .body( "cards.multiverseid", everyItem( equalTo( multiverseIdFilter ) ) );
     }
 }

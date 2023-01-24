@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80446f59-ab0c-48a6-9a50-5066dca587fe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/CardAPITest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/MagicAPITest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/APIVulnerability.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CardAPITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CardAPITest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/MagicAPITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MagicAPITest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="AnnotationType" />
       </list>
     </option>
   </component>
@@ -32,6 +29,13 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectId" id="2KeAdrbNp5jHXLrS1ipScUDByCa" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -53,41 +57,42 @@
       <recent name="C:\Users\48605\Desktop\Uczelnia\APItesting\src\main\java\org\example" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CardAPITest">
-    <configuration name="CardAPITest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CardAPITest.checkCardFilteringByNames">
+    <configuration name="CardAPITest.checkCardFilteringById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="APItesting" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CardAPITest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CardAPITest.checkCardFilteringByRarity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="APItesting" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CardAPITest" />
-      <option name="METHOD_NAME" value="checkCardFilteringByRarity" />
+      <option name="METHOD_NAME" value="checkCardFilteringById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CardAPITest.checkCardFilteringBySuperTypes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CardAPITest.checkCardFilteringByMultiverseId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="APItesting" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CardAPITest" />
-      <option name="METHOD_NAME" value="checkCardFilteringBySuperTypes" />
+      <option name="METHOD_NAME" value="checkCardFilteringByMultiverseId" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CardAPITest.checkCardFilteringByTypes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CardAPITest.checkCardFilteringByNames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="APItesting" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CardAPITest" />
-      <option name="METHOD_NAME" value="checkCardFilteringByTypes" />
+      <option name="METHOD_NAME" value="checkCardFilteringByNames" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CardAPITest.checkWhetherContainFilterWorksWhenPropertyDoesNotExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="APItesting" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CardAPITest" />
+      <option name="METHOD_NAME" value="checkWhetherContainFilterWorksWhenPropertyDoesNotExists" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -105,11 +110,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CardAPITest" />
+        <item itemvalue="JUnit.CardAPITest.checkCardFilteringByNames" />
+        <item itemvalue="JUnit.CardAPITest.checkCardFilteringById" />
+        <item itemvalue="JUnit.CardAPITest.checkCardFilteringByMultiverseId" />
         <item itemvalue="JUnit.CardAPITest.test" />
-        <item itemvalue="JUnit.CardAPITest.checkCardFilteringByRarity" />
-        <item itemvalue="JUnit.CardAPITest.checkCardFilteringByTypes" />
-        <item itemvalue="JUnit.CardAPITest.checkCardFilteringBySuperTypes" />
+        <item itemvalue="JUnit.CardAPITest.checkWhetherContainFilterWorksWhenPropertyDoesNotExists" />
       </list>
     </recent_temporary>
   </component>
