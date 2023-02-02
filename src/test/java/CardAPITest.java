@@ -1,31 +1,26 @@
+import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
-import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Collections;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.everyItem;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 /**
  * Tests regarding Cards.
  */
-public class CardAPITest extends MagicAPITest
+public class CardAPITest implements MagicAPITest
 {
-    private static final long TIMEOUT_VALUE = 30 * 1000; // 30 seconds to millis.
-
-    @Test( timeout = TIMEOUT_VALUE )
-    @Ignore
-    public void test()
-    {
-                given()
-                .when().get( getCardApiEndpoint() )
-                .then().log().all();
-    }
-
     /**
      * Test to check whether endpoint address is correct.
      */
@@ -35,7 +30,8 @@ public class CardAPITest extends MagicAPITest
         given()
                 .when().get( getCardApiEndpoint() )
                 .then()
-                .assertThat().statusCode( HttpStatus.SC_OK );
+                .assertThat().statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
+                .body( "cards", notNullValue() );
     }
 
     /**
@@ -49,7 +45,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "name", nameFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.name", everyItem( equalTo( nameFilter ) ) );
 
     }
@@ -65,7 +61,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "layout", layoutFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.layout", everyItem( equalTo( layoutFilter ) ) );
     }
 
@@ -80,7 +76,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "cmc", cmcFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.cmc", everyItem( equalTo( (float)cmcFilter ) ) );
     }
 
@@ -95,7 +91,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "colors", colorFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.colors", hasItems( Collections.singletonList( colorFilter ) ) );
     }
 
@@ -110,7 +106,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "colorIdentity", colorIdentityFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.colorIdentity", hasItems( Collections.singletonList( colorIdentityFilter ) ) );
     }
 
@@ -125,7 +121,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "type", typeFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.type", everyItem( containsString( typeFilter ) ) );
     }
 
@@ -140,7 +136,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "supertypes", superTypesFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.supertypes", hasItems( Collections.singletonList( superTypesFilter ) ) );
     }
 
@@ -155,7 +151,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "types", typesFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.types", hasItems( Collections.singletonList( typesFilter ) ) );
     }
 
@@ -170,7 +166,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "rarity", rarityFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.rarity", everyItem( containsString( rarityFilter ) ) );
     }
 
@@ -185,7 +181,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "set", setFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.set", everyItem( containsString( setFilter ) ) );
     }
 
@@ -200,7 +196,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "setName", setNameFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.setName", everyItem( containsString( setNameFilter ) ) );
     }
 
@@ -215,7 +211,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "text", textFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.text", everyItem( containsString( textFilter ) ) );
     }
 
@@ -230,7 +226,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "flavor", flavorFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.flavor", everyItem( containsString( flavorFilter ) ) );
     }
 
@@ -245,7 +241,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "number", numberFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.number", everyItem( equalTo( numberFilter ) ) );
     }
 
@@ -260,7 +256,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "artist", artistFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.artist", everyItem( equalTo( artistFilter ) ) );
     }
 
@@ -275,7 +271,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "power", powerFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.power", everyItem( equalTo( powerFilter ) ) );
     }
 
@@ -290,7 +286,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "toughness", toughnessFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.toughness", everyItem( equalTo( toughnessFilter ) ) );
     }
 
@@ -305,7 +301,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "language", languageFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.foreignNames.language", everyItem( hasItem( languageFilter ) ) );
     }
 
@@ -320,7 +316,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "legality", legalityFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.legalities.legality", everyItem( hasItem( legalityFilter ) ) );
     }
 
@@ -335,7 +331,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "legality", gameFormatFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.legalities.format", everyItem( hasItem( gameFormatFilter ) ) );
     }
 
@@ -350,7 +346,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "page", page )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK );
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON );
     }
 
     /**
@@ -379,7 +375,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "pageSize", pageSize )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK );
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON );
     }
 
     /**
@@ -423,7 +419,7 @@ public class CardAPITest extends MagicAPITest
 
         given().queryParam( "orderBy", orderByProperty )
                 .when().get( getCardApiEndpoint() )
-                .then().assertThat().statusCode( HttpStatus.SC_OK );
+                .then().assertThat().statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON );
     }
 
     /**
@@ -434,7 +430,7 @@ public class CardAPITest extends MagicAPITest
     {
         given().queryParam( "random" )
                 .when().get( getCardApiEndpoint() )
-                .then().assertThat().statusCode( HttpStatus.SC_OK );
+                .then().assertThat().statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON );
     }
 
     /**
@@ -445,7 +441,7 @@ public class CardAPITest extends MagicAPITest
     {
         given().queryParam( "contains", "name" )
                 .when().get( getCardApiEndpoint() )
-                .then().assertThat().statusCode( HttpStatus.SC_OK );
+                .then().assertThat().statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON );
 
         assertNotEquals( "{\"cards\":[]}", given().queryParam( "contains", "name" )
                 .when().get( getCardApiEndpoint() ).getBody().toString() );
@@ -459,7 +455,7 @@ public class CardAPITest extends MagicAPITest
     {
         given().queryParam( "contains", "rweqwaeage" )
                 .when().get( getCardApiEndpoint() )
-                .then().assertThat().statusCode( HttpStatus.SC_OK );
+                .then().assertThat().statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON );
 
         assertEquals( "{\"cards\":[]}", given().queryParam( "contains", "rweqwaeage" )
                 .when().get( getCardApiEndpoint() ).getBody().print() );
@@ -476,7 +472,7 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "id", gameFormatFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.id", everyItem( equalTo( gameFormatFilter ) ) );
     }
 
@@ -491,7 +487,49 @@ public class CardAPITest extends MagicAPITest
         given().queryParam( "multiverseid", multiverseIdFilter )
                 .when().get( getCardApiEndpoint() )
                 .then().assertThat()
-                .statusCode( HttpStatus.SC_OK )
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
                 .body( "cards.multiverseid", everyItem( equalTo( multiverseIdFilter ) ) );
     }
+
+    /**
+     * Test to check whether card can be fetched by id.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkFetchingCardById()
+    {
+        final String id = "5f8287b1-5bb6-5f4c-ad17-316a40d5bb0c";
+
+        given().when().get( getCardApiEndpoint() + "/" + id )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
+                .body( "card.id", is( id ) );
+    }
+
+    /**
+     * Test to check whether card can be fetched by multiverseid.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void checkFetchingCardByMutilverseId()
+    {
+        final String multiverseId = "130550";
+
+        given().when().get( getCardApiEndpoint() + "/" + multiverseId )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_OK ).contentType( ContentType.JSON )
+                .body( "card.multiverseid", is( multiverseId ) );
+    }
+
+    /**
+     * Test to check whether we will get 404 when id does not match any card.
+     */
+    @Test( timeout = TIMEOUT_VALUE )
+    public void shouldFailWhenFetchingByNonExistableId()
+    {
+        final String multiverseId = "nonExistableId";
+
+        given().when().get( getCardApiEndpoint() + "/" + multiverseId )
+                .then().assertThat()
+                .statusCode( HttpStatus.SC_NOT_FOUND ).contentType( ContentType.JSON );
+    }
+
 }

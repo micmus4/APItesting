@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80446f59-ab0c-48a6-9a50-5066dca587fe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/APIVulnerability.java" afterDir="false" />
+    <list default="true" id="80446f59-ab0c-48a6-9a50-5066dca587fe" name="Changes" comment="first steps">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CardAPITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CardAPITest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/MagicAPITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MagicAPITest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +16,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="AnnotationType" />
       </list>
     </option>
   </component>
@@ -29,13 +24,6 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
   </component>
   <component name="ProjectId" id="2KeAdrbNp5jHXLrS1ipScUDByCa" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -57,42 +45,41 @@
       <recent name="C:\Users\48605\Desktop\Uczelnia\APItesting\src\main\java\org\example" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CardAPITest.checkCardFilteringByNames">
-    <configuration name="CardAPITest.checkCardFilteringById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CardAPITest">
+    <configuration name="CardAPITest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="APItesting" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CardAPITest" />
-      <option name="METHOD_NAME" value="checkCardFilteringById" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CardAPITest.checkCardFilteringByRarity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="APItesting" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CardAPITest" />
+      <option name="METHOD_NAME" value="checkCardFilteringByRarity" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CardAPITest.checkCardFilteringByMultiverseId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CardAPITest.checkCardFilteringBySuperTypes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="APItesting" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CardAPITest" />
-      <option name="METHOD_NAME" value="checkCardFilteringByMultiverseId" />
+      <option name="METHOD_NAME" value="checkCardFilteringBySuperTypes" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CardAPITest.checkCardFilteringByNames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CardAPITest.checkCardFilteringByTypes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="APItesting" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CardAPITest" />
-      <option name="METHOD_NAME" value="checkCardFilteringByNames" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CardAPITest.checkWhetherContainFilterWorksWhenPropertyDoesNotExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="APItesting" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CardAPITest" />
-      <option name="METHOD_NAME" value="checkWhetherContainFilterWorksWhenPropertyDoesNotExists" />
+      <option name="METHOD_NAME" value="checkCardFilteringByTypes" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -110,11 +97,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CardAPITest.checkCardFilteringByNames" />
-        <item itemvalue="JUnit.CardAPITest.checkCardFilteringById" />
-        <item itemvalue="JUnit.CardAPITest.checkCardFilteringByMultiverseId" />
+        <item itemvalue="JUnit.CardAPITest" />
         <item itemvalue="JUnit.CardAPITest.test" />
-        <item itemvalue="JUnit.CardAPITest.checkWhetherContainFilterWorksWhenPropertyDoesNotExists" />
+        <item itemvalue="JUnit.CardAPITest.checkCardFilteringByRarity" />
+        <item itemvalue="JUnit.CardAPITest.checkCardFilteringByTypes" />
+        <item itemvalue="JUnit.CardAPITest.checkCardFilteringBySuperTypes" />
       </list>
     </recent_temporary>
   </component>
@@ -127,8 +114,17 @@
       <option name="presentableId" value="Default" />
       <updated>1674324774563</updated>
       <workItem from="1674324780280" duration="9339000" />
-      <workItem from="1674426372690" duration="667000" />
+      <workItem from="1674426372690" duration="2204000" />
+      <workItem from="1675015257397" duration="123000" />
     </task>
+    <task id="LOCAL-00001" summary="first steps">
+      <created>1674427237784</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1674427237784</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +140,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first steps" />
+    <option name="LAST_COMMIT_MESSAGE" value="first steps" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
